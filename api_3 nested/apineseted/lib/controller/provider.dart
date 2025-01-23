@@ -10,11 +10,10 @@ class GetPro extends ChangeNotifier {
   List<Userin> user = [];
 
   Future<void> getUser() async {
-    notifyListeners();
-
     try {
       Userin use = await ser.getEmplyee();
       user = [use];
+      notifyListeners();
       log('data shown');
     } catch (e) {
       log('$e');

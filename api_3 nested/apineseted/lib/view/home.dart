@@ -1,5 +1,5 @@
 import 'package:apineseted/controller/provider.dart';
-import 'package:apineseted/model/model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
