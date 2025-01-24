@@ -6,16 +6,20 @@ import 'package:petshop/service/productsrvice.dart';
 
 class Productpro extends ChangeNotifier {
   Productsrvice service = Productsrvice();
-  List<Productmodel> product = [];
+  List<Data> product = [];
   bool isLoading = true;
 
-  void getProduct() async {
+  Future getProduct() async {
+    isLoading = true;
+    notifyListeners();
     try {
       product = await service.productDetails();
       log('data not reached in provider');
     } catch (e) {
       throw Exception('$e');
+    } finally {
+      isLoading = false;
+      notifyListeners();
     }
-    notifyListeners();
   }
 }

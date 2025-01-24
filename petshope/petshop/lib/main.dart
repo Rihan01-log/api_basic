@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:petshop/controller/cartprovider.dart';
 import 'package:petshop/controller/productpro.dart';
+import 'package:petshop/view/home.dart';
 import 'package:petshop/view/login.dart';
 import 'package:provider/provider.dart';
 
@@ -16,11 +18,14 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => Productpro(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Cartprovider(),
         )
       ],
       child: MaterialApp(
         title: 'Pet Shope',
-        home: Login(),
+        home: Home(),
       ),
     );
   }
