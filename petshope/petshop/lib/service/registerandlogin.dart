@@ -24,23 +24,19 @@ class Registerandlogin {
     } on DioException catch (e) {
       log('${e.response?.statusCode}');
     }
-
   }
 
-Future<void>loginUser(Loginmodel user)async{
-try {
-  final respose=await dio.post('${baserUrl}login',data: user.toJson());
-  if (respose.statusCode==200) {
-    log('${respose.data['message']}');
-    final token=respose.data['token'];
-    log(token);
-    await storage.write(key: 'auth token', value: token);
+  Future<void> loginUser(Loginmodel user) async {
+    try {
+      final respose = await dio.post('${baserUrl}login', data: user.toJson());
+      if (respose.statusCode == 200) {
+        final token = respose.data['token'];
+        log(token);
+        await storage.write(key: 'auth token', value: token);
+      }
+    } on DioException catch (e) {
+      log('error:$e');
+    }
+    throw Exception('error in login');
   }
-}on DioException catch (e) {
-  throw Exception('$e');
-}
-
-
-}
-  
 }
